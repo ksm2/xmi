@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001"
+         xmlns:uml="http://www.omg.org/spec/UML/20131001"
+         xmlns:umldi="http://www.omg.org/spec/UML/20131001/UMLDI"
+         xmlns:di="http://www.omg.org/spec/DD/20131001/DI"
+         xmlns:dc="http://www.omg.org/spec/DD/20131001/DC"
+         xmlns:dg="http://www.omg.org/spec/DD/20131001/DG">
+    <xmi:documentation xmi:type="xmi:Documentation" id="documetnation1">
+        <contact>
+            Konstantin Möllers
+            Henriettenstraße 8
+            20259 Hamburg
+            Deutschland
+        </contact>
+    </xmi:documentation>
+    <uml:Package xmi:id="p1" xmi:type="uml:Package" URI="https://ksm2.github.io/xmi/Petrinet/v1.0.0" name="Petrinet">
+        <packageImport xmi:type="uml:PackageImport" xmi:id="_packageImport.0">
+            <importedPackage href="http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi#_0"/>
+        </packageImport>
+        <packagedElement xmi:type="uml:Class" xmi:id="Net" name="Net">
+            <ownedComment xmi:type="uml:Comment" xmi:id="Net-_ownedComment.0">
+                <body>A Net is the overall containing element.</body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Net-name" name="name">
+                <type xmi:type="uml:PrimitiveType" href="http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Net-places" name="places" association="A_places_net" type="Place" aggregation="composite">
+                <ownedComment xmi:type="uml:Comment">
+                    <body>The places of this net.</body>
+                </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Net-transitions" name="transitions" association="A_transitions_net" type="Transition" aggregation="composite">
+                <ownedComment xmi:type="uml:Comment">
+                    <body>The transitions of this net.</body>
+                </ownedComment>
+            </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="Place" name="Place">
+            <ownedComment xmi:type="uml:Comment" xmi:id="Place-_ownedComment.0">
+                <body>A Place is displayed by a circle, able to contain tokens.</body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Place-name" name="name">
+                <type xmi:type="uml:PrimitiveType" href="http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi#String"/>
+                <lowerValue xmi:type="uml:LiteralInteger"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Place-tokens" name="tokens">
+                <type xmi:type="uml:PrimitiveType" href="http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi#Integer"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Place-outputTransition" name="outputTransition" association="A_input_outputTransition" type="Transition">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Place-outputTransition-_upperValue" value="*"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Place-outputTransition-_lowerValue"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Place-inputTransition" name="inputTransition" association="A_output_inputTransition" type="Transition">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Place-inputTransition-_upperValue" value="*"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Place-inputTransition-_lowerValue"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Place-net" name="net" association="A_places_net" type="Net"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="Transition" name="Transition">
+            <ownedComment xmi:type="uml:Comment" xmi:id="Transition-_ownedComment.0">
+                <body>A Transition is displayed by a transition, able to pass tokens from input to output places.</body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Transition-name" name="name">
+                <type xmi:type="uml:PrimitiveType" href="http://www.omg.org/spec/UML/20131001/PrimitiveTypes.xmi#String"/>
+                <lowerValue xmi:type="uml:LiteralInteger"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Transition-input" name="input" association="A_input_outputTransition" type="Place">
+                <ownedComment xmi:type="uml:Comment">
+                    <body>The input places of this transition.</body>
+                </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Transition-output" name="output" association="A_output_inputTransition" type="Place">
+                <ownedComment xmi:type="uml:Comment">
+                    <body>The output places of this transition.</body>
+                </ownedComment>
+            </ownedAttribute>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="Transition-net" name="net" association="A_transitions_net" type="Net"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="A_places_net" name="A_places_net" memberEnd="Net-places Place-net"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="A_transitions_net" name="A_transitions_net" memberEnd="Net-transitions Transition-net"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="A_input_outputTransition" name="A_input_outputTransition" memberEnd="Transition-input Place-outputTransition"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="A_output_inputTransition" name="A_output_inputTransition" memberEnd="Transition-output Place-inputTransition"/>
+    </uml:Package>
+    <di:Diagram xmi:type="di:Diagram" xmi:id="_pn.diagrams-_contents.0" name="Petrinet elements">
+        <ownedElement xmi:type="di:Shape" xmi:id="Net.diagram">
+            <modelElement xmi:type="uml:Class" xmi:idref="Net"/>
+            <bounds xmi:type="dc:Bounds" xmi:id="Net.diagram-bounds" x="400" y="0" width="400" height="150"/>
+            <localStyle xmi:type="dg:Style" xmi:id="Net.diagram-localStyle">
+                <fillColor xmi:type="dc:Color" xmi:id="Net.diagram-localStyle-fillColor" red="255" green="255" blue="255"/>
+            </localStyle>
+        </ownedElement>
+        <ownedElement xmi:type="di:Shape" xmi:id="Place.diagram">
+            <modelElement xmi:type="uml:Class" xmi:idref="Place"/>
+            <bounds xmi:type="dc:Bounds" xmi:id="Place.diagram-bounds" x="0" y="400" width="400" height="150"/>
+            <localStyle xmi:type="dg:Style" xmi:id="Place.diagram-localStyle">
+                <fillColor xmi:type="dc:Color" xmi:id="Place.diagram-localStyle-fillColor" red="255" green="255" blue="255"/>
+            </localStyle>
+        </ownedElement>
+        <ownedElement xmi:type="di:Shape" xmi:id="Transition.diagram">
+            <modelElement xmi:type="uml:Class" xmi:idref="Transition"/>
+            <bounds xmi:type="dc:Bounds" xmi:id="Place.diagram-bounds" x="800" y="400" width="400" height="150"/>
+            <localStyle xmi:type="dg:Style" xmi:id="Place.diagram-localStyle" fillColor="Cr:255,255,255,255"/>
+        </ownedElement>
+        <ownedElement xmi:type="di:Edge" source="Net.diagram" target="Place.diagram">
+            <modelElement xmi:type="uml:Association" xmi:idref="A_places_net"/>
+            <waypoint xmi:type="dc:Point" x="200" y="75"/>
+        </ownedElement>
+        <ownedElement xmi:type="di:Edge" source="Net.diagram" target="Transition.diagram">
+            <modelElement xmi:type="uml:Association" xmi:idref="A_transitions_net"/>
+            <waypoint xmi:type="dc:Point" x="1000" y="75"/>
+        </ownedElement>
+        <ownedElement xmi:type="di:Edge" source="Transition.diagram" target="Place.diagram">
+            <modelElement xmi:type="uml:Association" xmi:idref="A_input_outputTransition"/>
+            <waypoint xmi:type="dc:Point" x="600" y="450"/>
+        </ownedElement>
+        <ownedElement xmi:type="di:Edge" source="Transition.diagram" target="Place.diagram">
+            <modelElement xmi:type="uml:Association" xmi:idref="A_output_inputTransition"/>
+            <waypoint xmi:type="dc:Point" x="600" y="500"/>
+        </ownedElement>
+    </di:Diagram>
+</xmi:XMI>
